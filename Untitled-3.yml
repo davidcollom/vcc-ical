@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flexget-console
+  namespace: flexget
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      flexget: console
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        flexget: console
+    spec:
+      containers:
+      - args:
+        - tail
+        - -f
+        - /dev/null
+        image: davidcollom/flexget:3.1.130
+        imagePullPolicy: IfNotPresent
+        name: flexget
+        resources:
+          limits:
+            cpu: "1"
+            memory: 250Mi
+          requests:
+            cpu: 100m
+            memory: 100Mi
+        securityContext:
+          privileged: true
+          procMount: Default
+        stdin: true
+        tty: true
+        volumeMounts:
+        - mountPath: /config/
+          name: config
+        - mountPath: /root/
+          name: flexget
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        beta.kubernetes.io/arch: arm
+      volumes:
+      - name: flexget
+        persistentVolumeClaim:
+          claimName: flexget
+      - configMap:
+          defaultMode: 420
+          name: flexget-conf
+        name: config

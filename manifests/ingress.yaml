@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+    external-dns.alpha.kubernetes.io/hostname: cal.vcc.beta.collom.co.uk
+    ingress.kubernetes.io/ssl-redirect: "true"
+    traefik.frontend.rule.type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/redirect-entry-point: https
+    traefik.ingress.kubernetes.io/redirect-permanent: "true"
+  name: calender
+  namespace: verulamcc
+spec:
+  rules:
+  - host: cal.vcc.beta.collom.co.uk
+    http:
+      paths:
+      - backend:
+          serviceName: calender
+          servicePort: http
+        path: /
