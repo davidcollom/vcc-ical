@@ -27,7 +27,7 @@ GEM
       method_source (~> 1.0)
     puma (3.4.0)
     racc (1.5.2)
-    rack (2.2.2)
+    rack (2.2.4)
     rack-protection (2.0.8.1)
       rack
     redis (4.4.0)
