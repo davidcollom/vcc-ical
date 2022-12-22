@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require 'httparty'
+# require 'httparty'
 require 'nokogiri'
 require 'digest'
 require 'icalendar'
@@ -7,13 +7,13 @@ require 'icalendar/tzinfo'
 require 'pry'
 
 class VerulamCal
-  include ::HTTParty
+  # include ::HTTParty
 
-  # base_uri 'https://www.verulamcc.org.uk/events-calendar/year.listevents'
-  base_uri 'https://www.verulamcc.org.uk/events-calendar/month.calendar/'
-  format :html
-  headers 'Content-Type' => 'application/html', 'User-Agent': 'curl/7.64.1'
-  logger ::Logger.new STDOUT, :debug, :curl
+  # # base_uri 'https://www.verulamcc.org.uk/events-calendar/year.listevents'
+  # base_uri 'https://www.verulamcc.org.uk/events-calendar/month.calendar/'
+  # format :html
+  # headers 'Content-Type' => 'application/html', 'User-Agent': 'curl/7.64.1'
+  # logger ::Logger.new STDOUT, :debug, :curl
 
   # TIMEZONE = 'GMT'.freeze
 
@@ -21,14 +21,14 @@ class VerulamCal
   MULTI_DATE_REGEX = %r{From:\W(?<startDate>\w+ \d{2} \w+ \d{4})\WTo:\W(:?.+)\W(?<startTime>\d{2}:\d{2})\W-\W(?<endTime>\d{2}:\d{2})}.freeze
 
   class << self
-    def events(options: {})
-      # build_query = {tags: tag, limit: limit}
-      # options.merge!( {query: build_query} )
-      puts "Fetching Events...#{options}"
-      resp = self.get(Date.today.strftime('/%Y/%m/%d/-'), options )
-      return find_events(resp.body) if resp.ok?
-      return ""
-    end
+    # def events(options: {})
+    #   # build_query = {tags: tag, limit: limit}
+    #   # options.merge!( {query: build_query} )
+    #   puts "Fetching Events...#{options}"
+    #   resp = self.get(Date.today.strftime('/%Y/%m/%d/-'), options )
+    #   return find_events(resp.body) if resp.ok?
+    #   return ""
+    # end
 
     def find_events(html)
       doc = Nokogiri::HTML(html)
