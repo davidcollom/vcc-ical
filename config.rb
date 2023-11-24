@@ -37,8 +37,18 @@ activate :data_source do |c|
     c.root  = "https://www.verulamcc.org.uk/events-calendar/month.calendar/"
     c.sources = [
         {
-            alias: 'events',
+            alias: 'current_month',
             path: Date.today.strftime('/%Y/%m/%d/-'),
+            type: :html
+        },
+        {
+            alias: 'next_month',
+            path: (Date.today.next_month).strftime('/%Y/%m/%d/-'),
+            type: :html
+        },
+        {
+            alias: 'month_after_next',
+            path: (Date.today.next_month.next_month).strftime('/%Y/%m/%d/-'),
             type: :html
         }
     ]
@@ -50,7 +60,7 @@ activate :data_source do |c|
       }
 end
 
-proxy "/events", "ical", locals: {e: VerulamCal.new( @app.data.events ) }
+proxy "/events", "ical", locals: {e: VerulamCal.new( @app.data.current_month + @app.data.next_month + @app.data.month_after_next ) }
 
 configure :server do
 end
