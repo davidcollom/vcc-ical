@@ -17,8 +17,6 @@ concurrency: ${{ github.workflow }}
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    outputs:
-      matrix: ${{ steps.matrix.outputs.matrix }}
 
     steps:
     - name: Clean up runner
