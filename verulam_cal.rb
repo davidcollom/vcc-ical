@@ -38,8 +38,8 @@ class VerulamCal
 
         popup = e.css('span').first
         # Tite and data-content are embeded/escaped HTML
-        title = Nokogiri::HTML(popup.attr('title')).text
-        data_content = Nokogiri::HTML(popup.attr('data-content'))
+        title = Nokogiri::HTML(popup.attr('data-bs-original-title')).text
+        data_content = Nokogiri::HTML(popup.attr('data-bs-content'))
 
         td = DATE_REGEX.match(data_content.text)
         # Assume multi date?
@@ -48,7 +48,7 @@ class VerulamCal
         url = data_content.css('a').attr('href').text || "/"
 
         if td.nil?
-          binding.pry
+          # binding.pry
           puts "Event: #{title}, unable to find date: #{data_content.text}"
           next
         end
