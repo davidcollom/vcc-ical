@@ -38,7 +38,8 @@ class VerulamCal
 
         popup = e.css('span').first
         # Tite and data-content are embeded/escaped HTML
-        title = Nokogiri::HTML(popup.attr('data-bs-original-title')).text
+        # title = Nokogiri::HTML(popup.attr('data-bs-original-title')).text
+        title = Nokogiri::HTML(popup.attr('title')).text
         data_content = Nokogiri::HTML(popup.attr('data-bs-content'))
 
         td = DATE_REGEX.match(data_content.text)
