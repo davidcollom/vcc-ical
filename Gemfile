@@ -17,4 +17,3 @@ gem 'tzinfo'
 
 
 gem 'pry', group: [:development]
-∑
