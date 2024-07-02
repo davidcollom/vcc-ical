@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-ruby '2.7.8'
+ruby '3.1.6'
 
 gem "middleman"
 # gem "middleman-minify-html"
 gem "middleman-dotenv"
-gem 'middleman-pry'
+gem 'middleman-pry', group: [:development]
 gem 'middleman-robots'
 
 gem 'middleman-data_source'
@@ -17,3 +17,4 @@ gem 'tzinfo'
 
 
 gem 'pry', group: [:development]
+∑
