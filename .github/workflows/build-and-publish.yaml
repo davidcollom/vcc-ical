@@ -12,7 +12,9 @@ on:
       - main
 
 # ONLY EVER RUN ONE
-concurrency: ${{ github.workflow }}
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   build-and-publish:
