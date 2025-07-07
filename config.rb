@@ -37,6 +37,15 @@ def File.exists? str
     File.exist? str
 end
 
+module Net::HTTPHeader
+    def initialize_http_header(initheader)
+        @header = {
+            "User-Agent" => ["curl/8.5.0"],
+            "Accept"=> ["*/*"],
+        } 
+    end
+end
+
 activate :data_source do |c|
     c.root  = "https://www.verulamcc.org.uk/events-calendar/month.calendar/"
     c.sources = [
