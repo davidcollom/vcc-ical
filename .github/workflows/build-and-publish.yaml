@@ -28,8 +28,16 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
     - name: "Build"
-      run: |
-        bundle exec middleman build --verbose
+      uses: nick-fields/retry@v3
+      with:
+        timeout_minutes: 9000
+        retry_wait_seconds: 90
+        max_attempts: 10
+        continue_on_error: false
+        shell: bash
+        command: |
+          bundle exec middleman build --verbose
+        
 
     - name: Publish to Cloudflare Pages
       id: deploy

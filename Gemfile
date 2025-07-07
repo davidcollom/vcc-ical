@@ -9,9 +9,8 @@ gem 'middleman-pry', group: [:development]
 gem 'middleman-robots'
 
 gem 'middleman-data_source'
-gem 'borrower' 
 
-gem 'httparty'
+# gem 'httparty'
 gem 'nokogiri'
 gem 'icalendar'
 gem 'tzinfo'
