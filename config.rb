@@ -32,6 +32,10 @@ set :file_watcher_ignore,[
     /^tmp\//
   ]
 
+# Monkeypatching in File.exists
+def File.exists? str
+    File.exist? str
+end
 
 activate :data_source do |c|
     c.root  = "https://www.verulamcc.org.uk/events-calendar/month.calendar/"

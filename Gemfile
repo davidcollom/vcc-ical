@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.1.6'
+ruby '3.4.1'
 
 gem "middleman"
 # gem "middleman-minify-html"
@@ -9,6 +9,7 @@ gem 'middleman-pry', group: [:development]
 gem 'middleman-robots'
 
 gem 'middleman-data_source'
+gem 'borrower' 
 
 gem 'httparty'
 gem 'nokogiri'
