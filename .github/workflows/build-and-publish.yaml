@@ -28,6 +28,14 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+  
+    - name: Connect to Tailscale/Tailnet
+      uses: tailscale/github-action@v3
+      with:
+        oauth-client-id: ${{ secrets.TS_CLIENT_ID }}
+        oauth-secret: ${{ secrets.TS_SECRET }}
+        tags: tag:gha
+        use-cache: 'true'
 
     - name: "Build"
       uses: nick-fields/retry@v3
@@ -38,18 +46,19 @@ jobs:
         continue_on_error: false
         shell: bash
         command: |
-          bundle exec middleman build --verbose
-        
+          bundle exec middleman build --verbose  
 
     - name: Publish to Cloudflare Pages
       id: deploy
-      uses: cloudflare/pages-action@v1
       if: ${{ github.actor != 'dependabot[bot]' }}
+      uses: Wandalen/wretry.action@master
       with:
-        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        accountId: ${{secrets.CLOUDFLARE_ACCOUNT_ID }}
-        projectName: vcc-ical
-        directory: build
-        # Optional: Enable this if you want to have GitHub Deployments triggered
-        gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-        branch: main
+        action: cloudflare/pages-action@v1
+        with: |
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: vcc-ical
+          directory: build
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
