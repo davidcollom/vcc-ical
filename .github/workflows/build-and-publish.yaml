@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 1
 
@@ -30,7 +30,7 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
   
     - name: Connect to Tailscale/Tailnet
-      uses: tailscale/github-action@v3
+      uses: tailscale/github-action@v4
       with:
         oauth-client-id: ${{ secrets.TS_CLIENT_ID }}
         oauth-secret: ${{ secrets.TS_SECRET }}
