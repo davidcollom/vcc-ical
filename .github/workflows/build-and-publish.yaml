@@ -31,7 +31,7 @@ jobs:
   
     - name: Connect to Tailscale/Tailnet
       uses: tailscale/github-action@v4
-      if: ${{secrets.TS_CLIENT_ID != "" }}
+      if: ${{ env.TS_CLIENT_ID != '' && env.TS_SECRET != '' }}
       with:
         oauth-client-id: ${{ secrets.TS_CLIENT_ID }}
         oauth-secret: ${{ secrets.TS_SECRET }}
