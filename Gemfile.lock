@@ -52,7 +52,7 @@ GEM
       ostruct
     ice_cube (0.17.0)
     io-console (0.8.2)
-    json (2.19.5)
+    json (2.19.9)
     kramdown (2.5.2)
       rexml (>= 3.4.4)
     listen (3.10.0)
