@@ -49,6 +49,15 @@ jobs:
         command: |
           bundle exec middleman build --verbose  
 
+    - name: Determine deployment branch
+      id: deploy-branch
+      run: |
+        if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          echo "branch=pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+        else
+          echo "branch=main" >> "$GITHUB_OUTPUT"
+        fi
+
     - name: Publish to Cloudflare Pages
       id: deploy
       if: ${{ github.actor != 'dependabot[bot]' }}
@@ -56,6 +65,6 @@ jobs:
       with:
         apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        command: pages deploy build --project-name=vcc-ical --branch=${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || 'main' }}
+        command: pages deploy build --project-name=vcc-ical --branch=${{ steps.deploy-branch.outputs.branch }}
         # Optional: Enable this if you want to have GitHub Deployments triggered
         gitHubToken: ${{ secrets.GITHUB_TOKEN }}
