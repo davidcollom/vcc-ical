@@ -57,6 +57,8 @@ jobs:
       run: |
         if [[ "${{ github.event_name }}" == "pull_request" ]]; then
           echo "branch=pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+        elif [[ "${{ github.ref_type }}" == "branch" ]]; then
+          echo "branch=${{ github.ref_name }}" >> "$GITHUB_OUTPUT"
         else
           echo "branch=main" >> "$GITHUB_OUTPUT"
         fi
