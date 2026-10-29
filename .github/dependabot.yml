@@ -13,6 +13,13 @@ updates:
       "Docker":
         patterns:
           - "*"
+    ignore:
+      # The Dockerfile's Ruby base image must stay on the same minor series as
+      # the Gemfile's `ruby` directive (see .ruby-version). Dependabot cannot
+      # group updates across package ecosystems, so the series is pinned here
+      # and both are moved together in a single pull request.
+      - dependency-name: "ruby"
+        versions: [">= 3.5.0"]
   - package-ecosystem: "github-actions" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
