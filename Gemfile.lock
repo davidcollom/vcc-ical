@@ -45,13 +45,12 @@ GEM
       logger
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    icalendar (2.12.5)
+    icalendar (2.13.0)
       base64
       ice_cube (~> 0.16)
       logger
-      ostruct
     ice_cube (0.17.0)
-    io-console (0.8.2)
+    io-console (0.9.4)
     json (2.19.9)
     kramdown (2.5.2)
       rexml (>= 3.4.4)
@@ -115,7 +114,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.19.4-x86_64-linux-gnu)
       racc (~> 1.4)
-    ostruct (0.6.3)
     padrino-helpers (0.16.1)
       i18n (>= 0.6.7, < 2)
       padrino-support (= 0.16.1)
@@ -124,7 +122,7 @@ GEM
     parallel (2.1.0)
     parslet (2.0.0)
     prism (1.9.0)
-    pry (0.16.0)
+    pry (0.16.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
       reline (>= 0.6.0)
@@ -138,7 +136,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.11.1)
       ffi (~> 1.0)
-    reline (0.6.3)
+    reline (0.7.0)
       io-console (~> 0.5)
     rexml (3.4.4)
     sassc (2.4.0)
