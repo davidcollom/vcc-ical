@@ -1,9 +1,9 @@
-FROM ruby:4.0.8
+FROM ruby:3.4
 ARG VERSION=develop
 
 RUN gem install bundler
 
-COPY Gemfile /app/
+COPY Gemfile Gemfile.lock /app/
 WORKDIR /app
 RUN bundle install
 
